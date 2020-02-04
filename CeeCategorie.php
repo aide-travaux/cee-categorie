@@ -1,137 +1,207 @@
 <?php
 
-namespace AideTravaux\Cee\Categorie;
+namespace AideTravaux\CEE\Categorie;
 
-use AideTravaux\Core\Data\Entries;
-
-class CeeCategorie
+abstract class CeeCategorie
 {
     /**
-     * Liste des codes région
-     */
-    const CODES_REGION = [
-        "01", "02", "03", "04", "06", "11", "24", "27", "28",
-        "32", "44", "52", "53", "75", "76", "84", "93", "94"
-    ];
-
-    /**
-     * 
      * @param int Ressources du foyer
      * @param int Composition du foyer
      * @param string Code administratif de la région
      * @return null|string
      */
-    public static function get(int $income, int $household, string $codeRegion): string
+    public static function get(int $ressources, int $compositionFoyer, string $codeRegion): ?string
     {
-        self::validateHousehold($household);
-        self::validateCode($codeRegion);
+        if (!in_array($codeRegion, Entries::CODES_REGION) || !$compositionFoyer) {
+            return null;
+        }
 
         switch ($codeRegion) {
             case '11':
-                switch ($household) {
+                switch ($compositionFoyer) {
                     case 1:
-                        if ($income < 20470) {
-                            return Entries::CEE_CATEGORIES['cee_category_3'];
-                        } else if ($income < 24918) {
-                            return Entries::CEE_CATEGORIES['cee_category_2'];
+                        if ($ressources < 20470) {
+                            return Entries::CATEGORIES_CEE['categorie_cee_3'];
+                        } else if ($ressources < 24918) {
+                            return Entries::CATEGORIES_CEE['categorie_cee_2'];
                         }
                         break;
                     case 2:
-                        if ($income < 30044) {
-                            return Entries::CEE_CATEGORIES['cee_category_3'];
-                        } else if ($income < 36572) {
-                            return Entries::CEE_CATEGORIES['cee_category_2'];
+                        if ($ressources < 30044) {
+                            return Entries::CATEGORIES_CEE['categorie_cee_3'];
+                        } else if ($ressources < 36572) {
+                            return Entries::CATEGORIES_CEE['categorie_cee_2'];
                         }
                         break;
                     case 3:
-                        if ($income < 36080) {
-                            return Entries::CEE_CATEGORIES['cee_category_3'];
-                        } else if ($income < 43924) {
-                            return Entries::CEE_CATEGORIES['cee_category_2'];
+                        if ($ressources < 36080) {
+                            return Entries::CATEGORIES_CEE['categorie_cee_3'];
+                        } else if ($ressources < 43924) {
+                            return Entries::CATEGORIES_CEE['categorie_cee_2'];
                         }
                         break;
                     case 4:
-                        if ($income < 42128) {
-                            return Entries::CEE_CATEGORIES['cee_category_3'];
-                        } else if ($income < 51289) {
-                            return Entries::CEE_CATEGORIES['cee_category_2'];
+                        if ($ressources < 42128) {
+                            return Entries::CATEGORIES_CEE['categorie_cee_3'];
+                        } else if ($ressources < 51289) {
+                            return Entries::CATEGORIES_CEE['categorie_cee_2'];
                         }
                         break;
                     case 5:
-                        if ($income < 48198) {
-                            return Entries::CEE_CATEGORIES['cee_category_3'];
-                        } else if ($income < 58674) {
-                            return Entries::CEE_CATEGORIES['cee_category_2'];
+                        if ($ressources < 48198) {
+                            return Entries::CATEGORIES_CEE['categorie_cee_3'];
+                        } else if ($ressources < 58674) {
+                            return Entries::CATEGORIES_CEE['categorie_cee_2'];
                         }
                         break;
                     default:
-                        if ($income < 48198 + ($household - 5) * 6059) {
-                            return Entries::CEE_CATEGORIES['cee_category_3'];
-                        } else if ($income < 58674 + ($household - 5) * 7377) {
-                            return Entries::CEE_CATEGORIES['cee_category_2'];
+                        if ($ressources < 48198 + ($compositionFoyer - 5) * 6059) {
+                            return Entries::CATEGORIES_CEE['categorie_cee_3'];
+                        } else if ($ressources < 58674 + ($compositionFoyer - 5) * 7377) {
+                            return Entries::CATEGORIES_CEE['categorie_cee_2'];
                         }
                 }
-                return Entries::CEE_CATEGORIES['cee_category_1'];
+                return Entries::CATEGORIES_CEE['categorie_cee_1'];
             
             default:
-                switch ($household) {
+                switch ($compositionFoyer) {
                     case 1:
-                        if ($income < 14790) {
-                            return Entries::CEE_CATEGORIES['cee_category_3'];
-                        } else if ($income < 18960) {
-                            return Entries::CEE_CATEGORIES['cee_category_2'];
+                        if ($ressources < 14790) {
+                            return Entries::CATEGORIES_CEE['categorie_cee_3'];
+                        } else if ($ressources < 18960) {
+                            return Entries::CATEGORIES_CEE['categorie_cee_2'];
                         }
                         break;
                     case 2:
-                        if ($income < 21630) {
-                            return Entries::CEE_CATEGORIES['cee_category_3'];
-                        } else if ($income < 27729) {
-                            return Entries::CEE_CATEGORIES['cee_category_2'];
+                        if ($ressources < 21630) {
+                            return Entries::CATEGORIES_CEE['categorie_cee_3'];
+                        } else if ($ressources < 27729) {
+                            return Entries::CATEGORIES_CEE['categorie_cee_2'];
                         }
                         break;
                     case 3:
-                        if ($income < 26013) {
-                            return Entries::CEE_CATEGORIES['cee_category_3'];
-                        } else if ($income < 33346) {
-                            return Entries::CEE_CATEGORIES['cee_category_2'];
+                        if ($ressources < 26013) {
+                            return Entries::CATEGORIES_CEE['categorie_cee_3'];
+                        } else if ($ressources < 33346) {
+                            return Entries::CATEGORIES_CEE['categorie_cee_2'];
                         }
                         break;
                     case 4:
-                        if ($income < 30389) {
-                            return Entries::CEE_CATEGORIES['cee_category_3'];
-                        } else if ($income < 38958) {
-                            return Entries::CEE_CATEGORIES['cee_category_2'];
+                        if ($ressources < 30389) {
+                            return Entries::CATEGORIES_CEE['categorie_cee_3'];
+                        } else if ($ressources < 38958) {
+                            return Entries::CATEGORIES_CEE['categorie_cee_2'];
                         }
                         break;
                     case 5:
-                        if ($income < 34784) {
-                            return Entries::CEE_CATEGORIES['cee_category_3'];
-                        } else if ($income < 44592) {
-                            return Entries::CEE_CATEGORIES['cee_category_2'];
+                        if ($ressources < 34784) {
+                            return Entries::CATEGORIES_CEE['categorie_cee_3'];
+                        } else if ($ressources < 44592) {
+                            return Entries::CATEGORIES_CEE['categorie_cee_2'];
                         }
                         break;
                     default:
-                        if ($income < 34784 + ($household - 5) * 4385) {
-                            return Entries::CEE_CATEGORIES['cee_category_3'];
-                        } else if ($income < 44592 + ($household - 5) * 5617) {
-                            return Entries::CEE_CATEGORIES['cee_category_2'];
+                        if ($ressources < 34784 + ($compositionFoyer - 5) * 4385) {
+                            return Entries::CATEGORIES_CEE['categorie_cee_3'];
+                        } else if ($ressources < 44592 + ($compositionFoyer - 5) * 5617) {
+                            return Entries::CATEGORIES_CEE['categorie_cee_2'];
                         }
                 }
-                return Entries::CEE_CATEGORIES['cee_category_1'];
+                return Entries::CATEGORIES_CEE['categorie_cee_1'];
         }
     }
 
-    private static function validateCode(string $codeRegion)
+    /**
+     * Retourne le plafond de ressource de la catégorie "Précarité énergétique"
+     * @param int Composition du foyer
+     * @param string Code administratif de la région
+     * @return int
+     */
+    public static function getPlafondPrecarite(int $compositionFoyer, string $codeRegion): int
     {
-        if (!\in_array($codeRegion, self::CODES_REGION)) {
-            throw new \Exception("Invalid code region value");
+        if (!in_array($codeRegion, Entries::CODES_REGION) || !$compositionFoyer) {
+            return 0;
+        }
+
+        switch ($codeRegion) {
+            case '11':
+                switch ($compositionFoyer) {
+                    case 1:
+                        return 24918;
+                    case 2:
+                        return 36572;
+                    case 3:
+                        return 43924;
+                    case 4:
+                        return 51289;
+                    case 5:
+                        return 58674;
+                    default:
+                        return 58674 + ($compositionFoyer - 5) * 7377;
+                }
+            
+            default:
+                switch ($compositionFoyer) {
+                    case 1:
+                        return 18960;
+                    case 2:
+                        return 27729;
+                    case 3:
+                        return 33346;
+                    case 4:
+                        return 38958;
+                    case 5:
+                        return 44592;
+                    default:
+                        return 44592 + ($compositionFoyer - 5) * 5617;
+                }
         }
     }
 
-    private static function validateHousehold(int $household)
+    /**
+     * Retourne le plafond de ressource de la catégorie "Grande précarité énergétique"
+     * @param int Composition du foyer
+     * @param string Code administratif de la région
+     * @return int
+     */
+    public static function getPlafondGrandePrecarite(int $compositionFoyer, string $codeRegion): int
     {
-        if (!$household) {
-            throw new \Exception("Invalid household value");
+        if (!in_array($codeRegion, Entries::CODES_REGION) || !$compositionFoyer) {
+            return 0;
+        }
+
+        switch ($codeRegion) {
+            case '11':
+                switch ($compositionFoyer) {
+                    case 1:
+                        return 20470;
+                    case 2:
+                        return 30044;
+                    case 3:
+                        return 36080;
+                    case 4:
+                        return 42128;
+                    case 5:
+                        return 48198;
+                    default:
+                        return 48198 + ($compositionFoyer - 5) * 6059;
+                }
+            
+            default:
+                switch ($compositionFoyer) {
+                    case 1:
+                        return 14790;
+                    case 2:
+                        return 21630;
+                    case 3:
+                        return 26013;
+                    case 4:
+                        return 30389;
+                    case 5:
+                        return 34784;
+                    default:
+                        return 34784 + ($compositionFoyer - 5) * 4385;
+                }
         }
     }
 }

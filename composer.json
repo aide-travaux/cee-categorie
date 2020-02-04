@@ -1,6 +1,6 @@
 {
     "name": "aide-travaux/cee-categorie",
-    "description": "Package Cee Categorie",
+    "description": "Package CEE - Opérations standardisées",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -10,14 +10,13 @@
         }
     ],
     "autoload": {
-        "psr-4": {"AideTravaux\\Cee\\Categorie\\": ""},
+        "psr-4": {"AideTravaux\\CEE\\Categorie\\": ""},
         "exclude-from-classmap": [
             "/Tests/"
         ]
     },
     "require": {
-        "php": ">=5.3.0",
-        "aide-travaux/core": "*"
+        "php": ">=5.3.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.5"
