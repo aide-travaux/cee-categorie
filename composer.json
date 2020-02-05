@@ -1,6 +1,6 @@
 {
     "name": "aide-travaux/cee-categorie",
-    "description": "Package CEE - Opérations standardisées",
+    "description": "Aide travaux - Certificats d'économies d'énergie - Catégorie",
     "type": "library",
     "license": "MIT",
     "authors": [
