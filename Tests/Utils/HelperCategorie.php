@@ -1,33 +1,19 @@
 <?php
 
-namespace AideTravaux\CEE\Categorie;
+namespace AideTravaux\CEE\Categorie\Test;
 
 use PHPUnit\Framework\TestCase;
 use AideTravaux\CEE\Categorie\Entries;
-use AideTravaux\CEE\Categorie\CeeCategorie;
+use AideTravaux\CEE\Categorie\Utils\HelperCategorie;
 
-class CeeCategorieTest extends TestCase
+class HelperCategorieTest extends TestCase
 {
     /**
      * @dataProvider simulationProvider
      */
     public function testGet(int $ressources, int $compositionFoyer, string $codeRegion, ?string $expect)
     {
-        $this->assertEquals(CeeCategorie::get($ressources, $compositionFoyer, $codeRegion), $expect);
-    }
-
-    public function testGetPlafondPrecarite()
-    {
-        $this->assertTrue(\is_int(CeeCategorie::getPlafondPrecarite(1, '11')));
-        $this->assertEquals(CeeCategorie::getPlafondPrecarite(1, ''), 0);
-        $this->assertEquals(CeeCategorie::getPlafondPrecarite(0, '11'), 0);
-    }
-
-    public function testGetPlafondGrandePrecarite()
-    {
-        $this->assertTrue(\is_int(CeeCategorie::getPlafondGrandePrecarite(1, '11')));
-        $this->assertEquals(CeeCategorie::getPlafondGrandePrecarite(1, ''), 0);
-        $this->assertEquals(CeeCategorie::getPlafondGrandePrecarite(0, '11'), 0);
+        $this->assertEquals(HelperCategorie::get($ressources, $compositionFoyer, $codeRegion), $expect);
     }
 
     public function simulationProvider()
@@ -78,5 +64,4 @@ class CeeCategorieTest extends TestCase
             [0, 0, 'CODE', null]
         ];
     }
-
 }

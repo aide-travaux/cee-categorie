@@ -1,30 +1,42 @@
-# Cee Categorie
+# Certificat d'économies d'énergie - Catégorie
 
-## Description
+## Introduction
+
+La classe CeeCategorie retourne les méthodes utiles pour obtenir des informations relatives aux catégories de ressources
+du dispositif CEE
+
+
+## Méthodes
 
 ```
-CeeCategorie::get(int $income, int $household, string $codeRegion): ?string
+CeeCategorie::get(int $ressources, int $compositionFoyer, string $codeRegion): ?string
 ```
-
 Retourne la catégorie de ressource selon le dispositif des Certificats d'économies d'énergie
 
-## Liste des paramètres
+```
+CeeCategorie::getPlafondPrecarite(int $compositionFoyer, string $codeRegion): int
+```
+Retourne le plafond de ressources de la catégorie "Précarité"
 
-**income**
+```
+CeeCategorie::getPlafondGrandePrecarite(int $compositionFoyer, string $codeRegion): int
+```
+Retourne le plafond de ressources de la catégorie "Grande précarité énergétique"
 
-Ressources financières du foyer
+```
+CeeCategorie::getFractionCeeClassique(int $compositionFoyer, string $codeDepartement): float
+```
+Retourne la part du volume de certificats Classique
 
-**household**
+```
+CeeCategorie::getFractionCeePrecarite(int $compositionFoyer, string $codeDepartement): float
+```
+Retourne la part du volume de certificats Précarité
 
-Composition du foyer
-
-**codeRegion**
-
-Code région
-
-## Valeurs de retour
-
-Retourne la catégorie de ressource, ou NULL en cas de dépassement des plafonds.
+```
+CeeCategorie::getFractionCeeGrandePrecarite(int $compositionFoyer, string $codeDepartement): float
+```
+Retourne la part du volume de certificats Grande précarité énergétique
 
 ## Exemples
 
@@ -33,11 +45,12 @@ Retourne la catégorie de ressource, ou NULL en cas de dépassement des plafonds
 
 use AideTravaux\Cee\Categorie\CeeCategorie;
 
-CeeCategorie::get(
-  2, 20000, "11"
-);
-
-// "Grande précarité énergétique"
+CeeCategorie::get( 20000, 2, "11" );
+CeeCategorie::getPlafondPrecarite( 2, "11" );
+CeeCategorie::getPlafondGrandePrecarite( 2, "11" );
+CeeCategorie::getFractionCeeClassique( "Grande précarité énergétique", "75" );
+CeeCategorie::getFractionCeePrecarite( "Grande précarité énergétique", "75" );
+CeeCategorie::getFractionCeeGrandePrecarite( "Grande précarité énergétique", "75" );
 
 ```
 
