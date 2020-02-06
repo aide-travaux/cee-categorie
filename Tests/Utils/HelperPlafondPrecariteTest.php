@@ -3,7 +3,7 @@
 namespace AideTravaux\CEE\Categorie\Test;
 
 use PHPUnit\Framework\TestCase;
-use AideTravaux\CEE\Categorie\Entries;
+use AideTravaux\CEE\Categorie\Data\Entries;
 use AideTravaux\CEE\Categorie\Utils\HelperCategorie;
 use AideTravaux\CEE\Categorie\Utils\HelperPlafondPrecarite;
 

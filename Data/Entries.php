@@ -1,6 +1,6 @@
 <?php
 
-namespace AideTravaux\CEE\Categorie;
+namespace AideTravaux\CEE\Categorie\Data;
 
 abstract class Entries
 {

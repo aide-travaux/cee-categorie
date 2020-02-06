@@ -2,7 +2,7 @@
 
 namespace AideTravaux\CEE\Categorie\Utils;
 
-use AideTravaux\CEE\Categorie\Entries;
+use AideTravaux\CEE\Categorie\Data\Entries;
 
 abstract class HelperFractionGrandePrecarite
 {
