@@ -1,6 +1,6 @@
 <?php
 
-namespace AideTravaux\CEE\Categorie\Test;
+namespace AideTravaux\CEE\Categorie\Test\Utils;
 
 use PHPUnit\Framework\TestCase;
 use AideTravaux\CEE\Categorie\Data\Entries;
